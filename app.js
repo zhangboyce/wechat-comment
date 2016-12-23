@@ -25,7 +25,8 @@ app.use(require('koa-static-server')({rootDir: 'public', rootPath: '/public'}));
 const ConnectMongo = require('./common/ConnectMongo');
 require('dotenv').config({silent: true});
 const env = process.env;
-ConnectMongo.connect(env.MONGO_URL, 'raw');
+const mongo_url = env.NODE_ENV || 'mongodb://127.0.0.1:27017/wechat_comment';
+ConnectMongo.connect(mongo_url, 'raw');
 
 const port = 8888;
 app.listen(port);
